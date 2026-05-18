@@ -32,7 +32,7 @@ The dashboard is designed with a professional banking-focused UI and emphasizes 
 
 ## Customer Segmentation Analysis
 
-![Customer Segmentation](Dashboard/Page3-segmentation.png)
+![Customer Segmentation](Dashboard/Page3-Segmentation.png)
 
 ---
 
