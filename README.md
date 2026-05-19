@@ -12,8 +12,6 @@ The project combines:
 - Transaction Pattern Analysis
 - Retention & Churn Monitoring
 
-The dashboard is designed with a professional banking-focused UI and emphasizes business storytelling, analytical clarity, and executive-level insights.
-
 ---
 
 # Dashboard Preview
@@ -67,7 +65,6 @@ The goal of this project is to transform raw banking transaction data into actio
 - Monitor customer retention and churn indicators
 - Track transaction behaviour patterns
 - Evaluate revenue exposure by risk profile
-- Build a professional executive-level Power BI dashboard
 
 ---
 
@@ -76,15 +73,13 @@ The goal of this project is to transform raw banking transaction data into actio
 The dataset contains banking customer transaction and account information, including:
 
 - Customer demographics
-- Transaction history
-- Credit score information
+- Transactions
 - Account balances
 - Customer locations
 - Transaction timestamps
-- Revenue-related metrics
 
 ### Dataset Scale
-- Total Customers: 753K+
+- Total Transactions: 868363
 - Analysis Period: Aug 2016 – Oct 2016
 
 ---
@@ -95,12 +90,11 @@ The raw banking dataset required multiple preprocessing and transformation steps
 
 The following data cleaning operations were performed using Power Query and DAX:
 
-- Removed duplicate customer records
 - Handled missing and null values
 - Standardized categorical fields
 - Corrected inconsistent text formatting
 - Converted date columns into proper datetime format
-- Created custom age group categories
+- Created custom age group categories from date of birth
 - Derived transaction time buckets
 - Generated calculated columns for RFM analysis
 - Validated customer transaction records
@@ -257,17 +251,43 @@ Measures customer revenue contribution.
 
 ---
 
-# Risk Profiling Logic
+# Risk Scoring Methodology
 
-Customers were classified into:
+## Objective
+
+Since the dataset did not contain actual actual credit-bureau variables such as
+repayment history, loan defaults, debt obligations, and credit inquiry data,
+a simulated behavioural credit scoring framework was developed using
+customer financial and transaction-based indicators.
+
+---
+
+## Scoring Factors
+
+| Factor | Weight | Purpose |
+|---|---|---|
+| Balance Score | 40% | Financial stability |
+| Utilization Score | 35% | Credit usage behaviour |
+| Activity Score | 10% | Transaction engagement |
+| Age Score | 15% | Customer stability proxy |
+
+---
+
+## DAX Formula
+
+```DAX
+Weighted Score =
+(
+'Customer Summary'[Balance Score] * 0.40 +
+'Customer Summary'[Utilization Score] * 0.35 +
+'Customer Summary'[Activity Score] * 0.10 +
+'Customer Summary'[Age Score] * 0.15
+)
+
+Then customers were classified into:
 - Low Risk
 - Medium Risk
 - High Risk
-
-Risk profiling was based on:
-- Credit score category
-- Customer behaviour
-- RFM segment characteristics
 
 ---
 
@@ -349,37 +369,29 @@ These challenges were addressed using optimized DAX measures, Power Query transf
 
 ---
 
-# Repository Structure
+# Future Improvements
 
-```bash
-bank-customer-segmentation-dashboard/
-│
-├── README.md
-├── LICENSE
-├── .gitignore
-│
-├── dashboard/
-│   ├── Bank_Customer_Segmentation.pbix
-│   └── dashboard_preview.pdf
-│
-├── screenshots/
-│   ├── overview.png
-│   ├── customer_analysis.png
-│   ├── segmentation.png
-│   └── risk_revenue.png
-│
-├── dataset/
-│   ├── banking_data.csv
-│   └── data_dictionary.xlsx
-│
-├── dax-measures/
-│   └── important_measures.md
-│
-├── docs/
-│   ├── project_objective.md
-│   ├── rfm_methodology.md
-│   ├── risk_logic.md
-│   └── business_insights.md
-│
-└── assets/
-    └── dashboard_theme.json
+- Predictive churn modeling
+- Machine learning-based customer scoring
+- Real-time streaming dashboards
+- Advanced anomaly detection
+- Customer lifetime value prediction
+- Drill-through customer intelligence pages
+
+---
+
+# Conclusion
+
+This project demonstrates how banking transaction data can be transformed into actionable business intelligence using Power BI, DAX, and data modeling techniques.
+
+The dashboard provides a complete analytical view of:
+
+- Customer behaviour
+- Revenue performance
+- Risk exposure
+- Segmentation strategy
+- Retention monitoring
+
+It is designed to support data-driven decision-making for banking and financial analytics use cases.
+
+---
