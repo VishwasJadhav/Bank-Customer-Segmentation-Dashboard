@@ -271,19 +271,6 @@ customer financial and transaction-based indicators.
 | Activity Score | 10% | Transaction engagement |
 | Age Score | 15% | Customer stability proxy |
 
----
-
-## DAX Formula
-
-```DAX
-Weighted Score =
-(
-'Customer Summary'[Balance Score] * 0.40 +
-'Customer Summary'[Utilization Score] * 0.35 +
-'Customer Summary'[Activity Score] * 0.10 +
-'Customer Summary'[Age Score] * 0.15
-)
-
 Then customers were classified into:
 - Low Risk
 - Medium Risk
