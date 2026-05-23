@@ -1,6 +1,6 @@
 # Total Revenue :
 
-```Total Revenue = SUM(Transactions[Transaction Amount])```
+Total Revenue = SUM(Transactions[Transaction Amount])
 
 ---
 
